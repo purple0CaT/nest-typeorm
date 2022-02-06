@@ -1,3 +1,6 @@
+import { PetModule } from './pet/pet.module';
+import { PetService } from './pet/services/pet.service';
+import { PetController } from './pet/controller/pet.controller';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,6 +9,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    PetModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
