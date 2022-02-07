@@ -36,4 +36,13 @@ export class UserService {
   remove(id: number): Promise<DeleteResult> {
     return this.usersRepo.delete(id);
   }
+  findByEmail(email: string): Promise<UserEntity> {
+    return this.usersRepo.findOne(
+      { email },
+      {
+        select: ['id', 'name', 'age', 'email', 'password'],
+        relations: ['pets'],
+      },
+    );
+  }
 }

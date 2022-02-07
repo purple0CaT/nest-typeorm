@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { PetModule } from './pet/pet.module';
 import { PetService } from './pet/services/pet.service';
 import { PetController } from './pet/controller/pet.controller';
@@ -9,6 +10,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    AuthModule,
     PetModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
@@ -18,8 +20,9 @@ import { UserModule } from './user/user.module';
       username: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
-      // entities: ['dist/srs/**/*.entity.js'],
+      entities: ['dist/**/*.entity.js'],
       autoLoadEntities: true,
+      // logging: true,
       synchronize: true, // TURN OF IN PRODUCTION, MAY LOSE DATA
     }),
     UserModule,
