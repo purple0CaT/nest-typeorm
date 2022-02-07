@@ -16,7 +16,6 @@ export class AuthService {
   ) {}
   //
   async validateUser(email: string, password: string): Promise<UserEntity> {
-    console.log('auth service', email);
     const user = await this.userService.findByEmail(email);
     if (user && user.password === password) {
       delete user.password;
